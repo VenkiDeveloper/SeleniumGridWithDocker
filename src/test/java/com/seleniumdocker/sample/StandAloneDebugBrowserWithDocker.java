@@ -18,10 +18,18 @@ import org.testng.annotations.Test;
 
 /***
  * Start docker, execute below command in cmd prompt.
- * docker run -d -p 4555:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.12.0-boron
- * @author venkatesh.aarelly
+ * 
+ * Chrome: docker run -d -P -p 5900:5900 --link selenium-hub:hub -v /dev/shm:/dev/shm selenium/node-chrome-debug:3.12.0-boron
+ * Firefox: docker run -d -P -p 5901:5900 --link selenium-hub:hub -v /dev/shm:/dev/shm selenium/node-firefox-debug:3.12.0-boron
+ * to connect to the Chrome node on 5900 and the Firefox node on 5901.
+ * 
+ * VNC Server to allow you to visually see the browser being automated.
+ * Open VNC client and connect to 127.0.0.1:5900 and enter password as secret.
+ * 
+ * @author venkatesh
+ *
  */
-public class StandAloneBrowserWithDocker {
+public class StandAloneDebugBrowserWithDocker {
 	WebDriver driver;
 	@BeforeTest
     public void setUp() throws MalformedURLException {
